@@ -2,6 +2,7 @@ require 'rails_helper'
 
 RSpec.describe BooksController, type: :controller do
   let(:author) {create(:author)}
+  let(:book) {create(:book)}
 
     context 'Book CRUD' do
     describe 'GET #index' do
@@ -56,7 +57,6 @@ RSpec.describe BooksController, type: :controller do
 
     describe 'GET #show' do
       it 'renders the show template' do
-        book = create(:book)
         get :show, params:{ id:  book.id }
         expect(response).to render_template(:show)
       end
@@ -64,7 +64,6 @@ RSpec.describe BooksController, type: :controller do
 
     describe 'GET #edit' do
       it 'renders the edit template' do
-        book = create(:book)
         get :edit, params: {id: book.id}
         expect(response).to render_template(:edit)
       end
@@ -72,7 +71,6 @@ RSpec.describe BooksController, type: :controller do
 
     describe 'PATCH #update' do
       context 'with valid attributes' do
-        let(:book) {create(:book)}
         let(:new_title) {Faker::Book.title}
 
         it 'updates the book' do
@@ -98,7 +96,6 @@ RSpec.describe BooksController, type: :controller do
         end
 
         it 'renders the edit template' do
-          book = create(:book)
           patch :update, params: {id: book.id, book: {title: nil}}
           expect(response).to render_template(:edit)
         end
@@ -107,14 +104,14 @@ RSpec.describe BooksController, type: :controller do
 
     describe 'DELETE #destroy' do
       it 'destroy the book' do
-        book = create(:book)
+        book
         expect{
           delete :destroy, params: {id: book.id}
         }.to change(Book, :count).by(-1)
       end
 
       it 'redirects to the books index page' do
-        book = create(:book)
+        book
         delete :destroy, params: {id: book.id}
         expect(response).to redirect_to(books_url)
       end
