@@ -1,6 +1,6 @@
 class AuthorsController < ApplicationController
   before_action :set_author, only: %i[ show edit update destroy ]
-
+  before_action :author_user, only: %i[ edit update destroy]
   # GET /authors or /authors.json
   def index
     @authors = Author.all
@@ -12,7 +12,7 @@ class AuthorsController < ApplicationController
 
   # GET /authors/new
   def new
-    @author = Author.new
+    @author = current_account.authors.build
   end
 
   # GET /authors/1/edit
@@ -21,7 +21,7 @@ class AuthorsController < ApplicationController
 
   # POST /authors or /authors.json
   def create
-    @author = Author.new(author_params)
+    @author = current_account.authors.build(author_params)
 
     respond_to do |format|
       if @author.save
@@ -65,6 +65,11 @@ class AuthorsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def author_params
-      params.require(:author).permit(:name)
+      params.require(:author).permit(:name, :account_id)
     end
+
+  def author_user
+    @author = current_account.authors.find_by(id: params[:id])
+    redirect_to authors_path, notice: "You are not authorized to perform this action." if @author.nil?
+  end
 end

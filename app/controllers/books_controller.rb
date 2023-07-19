@@ -1,5 +1,6 @@
 class BooksController < ApplicationController
   before_action :set_book, only: %i[ show edit update destroy ]
+  before_action :authorize_author, only: %i[edit update destroy]
 
   # GET /books or /books.json
   def index
@@ -67,4 +68,10 @@ class BooksController < ApplicationController
     def book_params
       params.require(:book).permit(:title, :publish_at, :author_id)
     end
+
+  def authorize_author
+    unless @book.author == current_account.author_ids
+      redirect_to books_path, notice: "You are not authorized to perform this action."
+    end
+  end
 end
