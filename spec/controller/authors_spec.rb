@@ -62,13 +62,50 @@ RSpec.describe AuthorsController, type: :controller do
 
     describe 'PATCH #update' do
       context 'with valid attributes' do
+        let(:author) {create(:author)}
+        let(:new_name) {Faker::Name.name}
+
         it 'updates the author' do
-          author = create(:author)
-          new_name = Faker::Name.name
           patch :update, params: {id: author.id, author:{name: new_name}}
           author.reload
           expect(author.name).to eq(new_name)
         end
+
+        it 'redirects to the author show page' do
+          patch :update, params: {id: author.id, author:{name: new_name}}
+          expect(response).to redirect_to(assigns(:author))
+        end
+      end
+
+      context 'with invalid attributes' do
+        let(:author)  {create(:author)}
+
+        it 'does no update the author' do
+          original_name = author.name
+          patch :update, params: {id: author.id, author:{name: nil}}
+          author.reload
+          expect(author.name).to eq(original_name)
+        end
+
+        it 'renders the edit template' do
+          patch :update, params: {id: author.id, author:{name: nil}}
+          expect(response).to render_template(:edit)
+        end
+      end
+    end
+
+    describe 'DELETE #destroy' do
+      it 'destroy the author' do
+        author = create(:author)
+        expect{
+          delete :destroy, params: {id: author.id}
+        }.to change(Author, :count).by(-1)
+      end
+
+      it 'redirects to the authors index page' do
+        author = create(:author)
+        delete :destroy, params: {id: author.id}
+        expect(response).to redirect_to(authors_url)
       end
     end
   end
