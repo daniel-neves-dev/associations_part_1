@@ -1,6 +1,8 @@
 require 'rails_helper'
 
 RSpec.describe AuthorsController, type: :controller do
+  let(:author) {create(:author)}
+
   context 'Author CRUD' do
     describe 'GET #index' do
       it 'renders the index template' do
@@ -46,7 +48,6 @@ RSpec.describe AuthorsController, type: :controller do
 
     describe 'GET #show' do
       it 'renders the show template' do
-        author = create(:author)
         get :show, params:{ id:  author.id }
         expect(response).to render_template(:show)
       end
@@ -54,7 +55,6 @@ RSpec.describe AuthorsController, type: :controller do
 
     describe 'GET #edit' do
       it 'renders the edit template' do
-        author = create(:author)
         get :edit, params: {id: author.id}
         expect(response).to render_template(:edit)
       end
@@ -78,8 +78,6 @@ RSpec.describe AuthorsController, type: :controller do
       end
 
       context 'with invalid attributes' do
-        let(:author)  {create(:author)}
-
         it 'does no update the author' do
           original_name = author.name
           patch :update, params: {id: author.id, author:{name: nil}}
@@ -96,14 +94,14 @@ RSpec.describe AuthorsController, type: :controller do
 
     describe 'DELETE #destroy' do
       it 'destroy the author' do
-        author = create(:author)
+        author
         expect{
           delete :destroy, params: {id: author.id}
         }.to change(Author, :count).by(-1)
       end
 
       it 'redirects to the authors index page' do
-        author = create(:author)
+        author
         delete :destroy, params: {id: author.id}
         expect(response).to redirect_to(authors_url)
       end
