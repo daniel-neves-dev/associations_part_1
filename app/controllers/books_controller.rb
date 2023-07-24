@@ -70,7 +70,7 @@ class BooksController < ApplicationController
     end
 
   def authorize_author
-    unless @book.author == current_account.author_ids
+    unless current_account.author_ids.include?(@book.author_id)
       redirect_to books_path, notice: "You are not authorized to perform this action."
     end
   end

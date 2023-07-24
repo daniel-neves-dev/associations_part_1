@@ -1,8 +1,13 @@
 require 'rails_helper'
 
 RSpec.describe BooksController, type: :controller do
-  let(:author) {create(:author)}
-  let(:book) {create(:book)}
+  let(:author) { create(:author, account_id: account.id) }
+  let(:book) { create(:book, author_id: author.id) }
+  let(:account) { create(:account) }
+
+  before do
+    sign_in account
+  end
 
     context 'Book CRUD' do
     describe 'GET #index' do
@@ -64,39 +69,38 @@ RSpec.describe BooksController, type: :controller do
 
     describe 'GET #edit' do
       it 'renders the edit template' do
-        get :edit, params: {id: book.id}
+        get :edit, params: { id: book.id }
         expect(response).to render_template(:edit)
       end
     end
 
-    describe 'PATCH #update' do
-      context 'with valid attributes' do
-        let(:new_title) {Faker::Book.title}
 
+    describe 'PATCH update' do
+      let(:new_title) { Faker::Book.title }
+
+      context 'with valid attributes' do
         it 'updates the book' do
-          patch :update, params: {id: book.id, book:{title: new_title}}
+          patch :update, params: { id: book.id, book: { title: new_title } }
           book.reload
           expect(book.title).to eq(new_title)
         end
 
-        it 'redirects to the book show page' do
-          patch :update, params: {id: book.id, book:{title: new_title}}
-          expect(response).to redirect_to(assigns(:book))
+        it 'redirects to book show page' do
+          patch :update, params: { id: book.id, book: { title: new_title } }
+          expect(response).to redirect_to(book_path(book))
         end
       end
 
       context 'with invalid attributes' do
-        let(:book) {create(:book)}
-
         it 'does not update the book' do
           original_title = book.title
-          patch :update, params: {id: book.id, book:{title: nil}}
+          patch :update, params: { id: book.id, book: { title: nil } }
           book.reload
           expect(book.title).to eq(original_title)
         end
 
         it 'renders the edit template' do
-          patch :update, params: {id: book.id, book: {title: nil}}
+          patch :update, params: { id: book.id, book: { title: nil } }
           expect(response).to render_template(:edit)
         end
       end
