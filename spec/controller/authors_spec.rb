@@ -1,7 +1,13 @@
 require 'rails_helper'
 
 RSpec.describe AuthorsController, type: :controller do
-  let(:author) {create(:author)}
+  let(:author) {create(:author, account_id: account.id)}
+  let(:account) { create(:account) }
+  let(:author_attributes){attributes_for(:author)}
+
+  before do
+    sign_in account
+  end
 
   context 'Author CRUD' do
     describe 'GET #index' do
@@ -61,10 +67,9 @@ RSpec.describe AuthorsController, type: :controller do
     end
 
     describe 'PATCH #update' do
-      context 'with valid attributes' do
-        let(:author) {create(:author)}
-        let(:new_name) {Faker::Name.name}
+      let(:new_name) {author.name}
 
+      context 'with valid attributes' do
         it 'updates the author' do
           patch :update, params: {id: author.id, author:{name: new_name}}
           author.reload
@@ -73,7 +78,7 @@ RSpec.describe AuthorsController, type: :controller do
 
         it 'redirects to the author show page' do
           patch :update, params: {id: author.id, author:{name: new_name}}
-          expect(response).to redirect_to(assigns(:author))
+          expect(response).to redirect_to(author_path(author))
         end
       end
 
@@ -96,7 +101,7 @@ RSpec.describe AuthorsController, type: :controller do
       it 'destroy the author' do
         author
         expect{
-          delete :destroy, params: {id: author.id}
+          delete :destroy, params: { id: author.id}
         }.to change(Author, :count).by(-1)
       end
 
