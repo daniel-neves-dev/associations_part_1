@@ -1,0 +1,17 @@
+<h1>Pages#index</h1>
+
+<div>
+  <%= link_to 'Authors', authors_url %> <strong>|</strong>
+  <%= link_to 'Books', books_url %>
+</div>
+
+<% if account_signed_in? && current_account %>
+  <strong>|</strong>
+  <%= link_to "Edit profile", edit_account_registration_path %> <strong>|</strong>
+  <%= button_to "Log out", destroy_account_session_url, method: :delete %>
+<% else %>
+  <strong>|</strong>
+  <%= link_to "Sign in", new_account_registration_path %> <strong>|</strong>
+  <%= link_to "Log in", account_session_url %>
+<% end %>
+
