@@ -18,5 +18,10 @@
     <strong>Description:</strong>
     <%= book.description %>
   </p>
-
+  <br/>
+  <% if book.image.content_type.in?(%w[image/jpeg image/png]) %>
+    <p>
+      <%= link_to image_tag(book.image_resize), book.image if book.image.attached? %>
+    </p>
+  <% end %>
 </div>
