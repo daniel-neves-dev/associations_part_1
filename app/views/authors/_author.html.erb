@@ -9,4 +9,9 @@
     <%= author.phone %>
   </p>
 
+  <% if author.avatar.content_type.in?(%w[image/jpeg image/png]) %>
+    <p>
+      <%= link_to image_tag(author.avatar_resize), author.avatar if author.avatar.attached? %>
+    </p>
+  <% end %>
 </div>
