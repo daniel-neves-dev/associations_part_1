@@ -1,10 +1,33 @@
-<p style="color: green"><%= notice %></p>
+<div class="container xl:max-w-screen-lg h-auto mx-auto px-4">
+  <div class="container w-full  justify-center flex">
+    <p style="color: green"><%= notice %></p>
 
-<%= render @book %>
+    <div class="grid grid-cols-2 gap-2">
 
-<div>
-  <%= link_to "Edit this book", edit_book_path(@book) %> |
-  <%= link_to "Back to books", books_path %>
+      <div class="w-full mb-6 sm:flex-none drop-zone ">
+        <div class="relative flex flex-col min-w-0 break-words bg-white border-0 shadow-soft-xl px-3 py-3 rounded-2xl bg-clip-border">
+          <div class="relative items-center font-bold">
+            <div class="text-2xl"><%= @book.title %></div>
+            <a class="block shadow-xl rounded-2xl mt-2">
+              <%= image_tag(@book.image, class: 'rounded-md') %>
+            </a>
+          </div>
+          <div class="flex-auto px-1 pt-4">
+            <div>
+              <h5 class="text-3xl text-blue-500"><%= @book.author.name %></h5>
+            </div>
 
-  <%= button_to "Destroy this book", @book, method: :delete %>
+            <div>
+              <strong>Publish at:</strong>
+              <%= @book.publish_at %>
+            </div>
+
+            <div class="mt-4">
+              <%= @book.description %>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
