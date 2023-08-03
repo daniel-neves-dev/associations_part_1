@@ -1,14 +1,88 @@
-<p style="color: green"><%= notice %></p>
+<div class="container xl:max-w-screen-lg h-auto mx-auto px-4">
+  <p style="color: green"><%= notice %></p>
+  <button type="button" class="text-white mt-4 mb-6 bg-green-500 hover:bg-green-600 focus:ring-4 focus:outline-none focus:ring-[#24292F]/50 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center
+                      transition ease-in-out delay-0 hover:-translate-y-1 hover:scale-110  duration-300 mr-2">
+    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-4 h-4 mr-2">
+      <path stroke-linecap="round" stroke-linejoin="round" d="M15.666 3.888A2.25 2.25 0 0013.5 2.25h-3c-1.03 0-1.9.693-2.166 1.638m7.332 0c.055.194.084.4.084.612v0a.75.75 0 01-.75.75H9a.75.75 0 01-.75-.75v0c0-.212.03-.418.084-.612m7.332 0c.646.049 1.288.11 1.927.184 1.1.128 1.907 1.077 1.907 2.185V19.5a2.25 2.25 0 01-2.25 2.25H6.75A2.25 2.25 0 014.5 19.5V6.257c0-1.108.806-2.057 1.907-2.185a48.208 48.208 0 011.927-.184" />
+    </svg>
+    <%= link_to "New author", new_author_path %>
+  </button>
 
-<h1>Authors</h1>
+  <div class="flex flex-wrap -mx-3">
+    <div class="flex-none w-full max-w-full px-3">
+      <div class="relative flex flex-col min-w-0 mb-6 break-words bg-gray-100 border-0 border-transparent border-solid shadow-soft-xl rounded-2xl bg-clip-border">
+        <div class="flex-auto px-0 pt-0 pb-2">
+          <div class="p-0 overflow-x-auto">
+            <table class="items-center w-full mb-0 align-top border-gray-200 text-slate-500">
+              <thead class="align-bottom">
+              <tr>
+                <th class="px-6 py-3 font-bold text-2xl text-left uppercase align-middle bg-transparent border-b border-gray-200 shadow-none border-b-solid tracking-none whitespace-nowrap text-slate-400 opacity-70">Authors</th>
+                <th class="px-6 py-3 pl-2 font-bold text-2xl text-left uppercase align-middle bg-transparent border-b border-gray-200 shadow-none border-b-solid tracking-none whitespace-nowrap text-slate-400 opacity-70">Books</th>
+                <th class="px-6 py-3 font-semibold capitalize align-middle bg-transparent border-b border-gray-200 border-solid shadow-none tracking-none whitespace-nowrap text-slate-400 opacity-70"></th>
+              </tr>
+              </thead>
+              <tbody>
+              <% @authors.each do |author| %>
+                <tr>
+                  <td class="p-2 align-middle bg-transparent border-b whitespace-nowrap shadow-transparent">
+                    <div class="flex px-2">
+                      <div>
+                        <%= link_to image_tag(author.avatar,
+                                              class:" mt-2 inline-flex items-center justify-center mr-2 text-sm text-white transition-all duration-200 rounded-lg ease-soft-in-out h-10 w-10"), author.avatar if author.avatar.attached? %>
+                      </div>
+                      <div class="flex flex-col justify-center px-2">
+                        <h6 class="mb-0 leading-normal text-2xl font-bold"><%= author.name %></h6>
+                        <p class="mb-0 text-xs leading-tight text-slate-400  font-semibold">Phone: <%= author.phone %></p>
+                      </div>
+                    </div>
+                  </td>
+                  <td class="p-2 align-middle bg-transparent border-b whitespace-nowrap shadow-transparent">
+                    <% author.books.each do |book| %>
+                      <div class="mb-2">
+                        <%= link_to book.title,book_path(book) ,class:"mb-0 text-xs font-semibold leading-tight hover:text-blue-600"%>
+                      </div>
+                    <% end %>
+                  </td>
+                  <td class="p-2 align-middle bg-transparent border-b whitespace-nowrap shadow-transparent">
+                    <div class="grid grid-cols-3">
+                      <div>
+                        <button type="button" class="text-white mt-4 mb-6 bg-yellow-500 hover:bg-yellow-600 focus:ring-4 focus:outline-none focus:ring-[#24292F]/50 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center
+                      transition ease-in-out delay-0 hover:-translate-y-1 hover:scale-110  duration-300 mr-2">
+                          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-4 h-4 mr-2">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M16.862 4.487l1.687-1.688a1.875 1.875 0 112.652 2.652L10.582 16.07a4.5 4.5 0 01-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 011.13-1.897l8.932-8.931zm0 0L19.5 7.125M18 14v4.75A2.25 2.25 0 0115.75 21H5.25A2.25 2.25 0 013 18.75V8.25A2.25 2.25 0 015.25 6H10"/>
+                          </svg>
+                          <%= link_to "Edit", edit_author_path(author) %>
+                        </button>
+                      </div>
 
-<div id="authors">
-  <% @authors.each do |author| %>
-    <%= render author %>
-    <p>
-      <%= link_to "Show this author", author %>
-    </p>
-  <% end %>
+                      <div>
+                        <button type="button" class="text-white mt-4 mb-6 bg-blue-500 hover:bg-blue-600 focus:ring-4 focus:outline-none focus:ring-[#24292F]/50 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center
+                      transition ease-in-out delay-0 hover:-translate-y-1 hover:scale-110  duration-300 mr-2">
+                          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-4 h-4 mr-2">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M2.036 12.322a1.012 1.012 0 010-.639C3.423 7.51 7.36 4.5 12 4.5c4.638 0 8.573 3.007 9.963 7.178.07.207.07.431 0 .639C20.577 16.49 16.64 19.5 12 19.5c-4.638 0-8.573-3.007-9.963-7.178z" />
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                          </svg>
+                          <%= link_to "Show", author_path(author) %>
+                        </button>
+                      </div>
+                      <div>
+                        <div class="text-white mt-4 mb-6 bg-red-500 hover:bg-red-600 focus:ring-4 focus:outline-none focus:ring-[#24292F]/50 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center
+                            transition ease-in-out delay-0 hover:-translate-y-1 hover:scale-110  duration-300 mr-2">
+                          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-4 h-4 mr-2">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M14.74 9l-.346 9m-4.788 0L9.26 9m9.968-3.21c.342.052.682.107 1.022.166m-1.022-.165L18.16 19.673a2.25 2.25 0 01-2.244 2.077H8.084a2.25 2.25 0 01-2.244-2.077L4.772 5.79m14.456 0a48.108 48.108 0 00-3.478-.397m-12 .562c.34-.059.68-.114 1.022-.165m0 0a48.11 48.11 0 013.478-.397m7.5 0v-.916c0-1.18-.91-2.164-2.09-2.201a51.964 51.964 0 00-3.32 0c-1.18.037-2.09 1.022-2.09 2.201v.916m7.5 0a48.667 48.667 0 00-7.5 0"/>
+                          </svg>
+                          <%= button_to "Delete", author, method: :delete, form: { data: { turbo_confirm: "Are you sure?" } } %>
+                        </div>
+                      </div>
+                    </div>
+                  </td>
+                </tr>
+              <% end %>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
-
-<%= link_to "New author", new_author_path %>
