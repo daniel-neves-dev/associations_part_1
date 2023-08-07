@@ -49,9 +49,9 @@
             </div>
           </div>
         </div>
-      </section>
-      <!-- -------- START FOOTER 3 w/ COMPANY DESCRIPTION WITH LINKS & SOCIAL ICONS & COPYRIGHT ------- -->
-      <footer class="py-1">
+    <% end %>
+
+      <footer class="mt-12">
         <div class="container">
           <div class="flex flex-wrap -mx-3">
             <div class="flex-shrink-0 w-full max-w-full mx-auto mb-6 text-center lg:flex-0 lg:w-8/12">
@@ -93,7 +93,14 @@
           </div>
         </div>
       </footer>
-      <!-- -------- END FOOTER 3 w/ COMPANY DESCRIPTION WITH LINKS & SOCIAL ICONS & COPYRIGHT ------- -->
-    <% end %>
+    </section>
   </main>
 </div>
+
+<% unless account_signed_in? %>
+  <script>
+      document.addEventListener('DOMContentLoaded', function() {
+          document.querySelector('body').classList.add('no-scroll');
+      });
+  </script>
+<% end %>
