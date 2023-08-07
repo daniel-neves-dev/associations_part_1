@@ -496,7 +496,9 @@ module.exports = {
 
       "gradient-horizontal-dark": "linear-gradient(90deg,transparent,rgba(0,0,0,.4),transparent)",
       "gradient-horizontal-light": "linear-gradient(90deg,transparent,rgba(0,0,0,.1),transparent)",
-    }),
+      "books": "url('/app/assets/images/books.jpg')",
+      'library_2': "url('/app/images/library.jpg')",
+          }),
     backgroundOpacity: ({ theme }) => theme("opacity"),
     backgroundPosition: {
       bottom: "bottom",
