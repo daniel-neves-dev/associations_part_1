@@ -2,7 +2,7 @@ class Author < ApplicationRecord
   has_many :books, dependent: :destroy
   has_one :account
 
-  has_one_attached :avatar
+  has_one_attached :avatar, dependent: :destroy
 
   validates :name, presence: true
   def avatar_resize
