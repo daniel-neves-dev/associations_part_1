@@ -1,27 +1,27 @@
-<div id="<%= dom_id book %>">
-  <p>
-    <strong>Title:</strong>
+<div id="<%= dom_id(book) %>" class="bg-white rounded-lg shadow-md p-4 mb-4">
+  <p class="mb-2">
+    <strong class="text-blue-600">Title:</strong>
     <%= book.title %>
   </p>
 
-  <p>
-    <strong>Author:</strong>
+  <p class="mb-2">
+    <strong class="text-blue-600">Author:</strong>
     <%= book.author.name %>
   </p>
 
-  <p>
-    <strong>Publish at:</strong>
+  <p class="mb-2">
+    <strong class="text-blue-600">Publish at:</strong>
     <%= book.publish_at %>
   </p>
 
-  <p>
-    <strong>Description:</strong>
+  <p class="mb-2">
+    <strong class="text-blue-600">Description:</strong>
     <%= book.description %>
   </p>
-  <br/>
+
   <% if book.image.content_type.in?(%w[image/jpeg image/png]) %>
-    <p>
-      <%= link_to image_tag(book.image_resize), book.image if book.image.attached? %>
-    </p>
+    <div class="mt-2">
+      <%= link_to image_tag(book.image_resize, class: 'max-w-full h-auto'), book.image if book.image.attached? %>
+    </div>
   <% end %>
 </div>

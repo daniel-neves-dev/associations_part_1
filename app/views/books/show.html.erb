@@ -1,31 +1,26 @@
-<div class="container xl:max-w-screen-lg h-auto mx-auto px-4">
-  <div class="container w-full  justify-center flex">
-    <p style="color: green"><%= notice %></p>
+<div class="container mx-auto px-4">
+  <div class="w-full text-center mt-8">
+    <p class="text-green-500"><%= notice %></p>
+  </div>
 
-    <div class="grid grid-cols-2 gap-2">
-
-      <div class="w-full mb-6 sm:flex-none drop-zone ">
-        <div class="relative flex flex-col min-w-0 break-words bg-white border-0 shadow-soft-xl px-3 py-3 rounded-2xl bg-clip-border">
-          <div class="relative items-center font-bold">
-            <div class="text-2xl"><%= @book.title %></div>
-            <a class="block shadow-xl rounded-2xl mt-2">
-              <%= image_tag(@book.image, class: 'rounded-md') %>
-            </a>
+  <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-8">
+    <div class="w-full mb-6 sm:flex-none">
+      <div class="relative bg-white border border-gray-300 rounded-lg shadow-xl overflow-hidden">
+        <div class="relative items-center p-6">
+          <h1 class="text-3xl font-bold mb-4"><%= @book.title %></h1>
+          <div class="mb-4">
+            <%= image_tag(@book.image, alt: @book.title, class: 'rounded-md mx-auto', style: 'max-width: 100%; height: auto;') %>
           </div>
-          <div class="flex-auto px-1 pt-4">
-            <div>
-              <h5 class="text-3xl text-blue-500"><%= @book.author.name %></h5>
-            </div>
-
-            <div>
-              <strong>Publish at:</strong>
-              <%= @book.publish_at %>
-            </div>
-
-            <div class="mt-4">
-              <%= @book.description %>
-            </div>
+          <div class="text-lg text-gray-600">
+            By: <span class="text-blue-500"><%= @book.author.name %></span>
           </div>
+          <div class="text-lg text-gray-600">
+            Published on: <%= @book.publish_at %>
+          </div>
+        </div>
+        <div class="px-6 py-4">
+          <h2 class="text-xl font-semibold mb-2">Description</h2>
+          <p class="text-gray-700"><%= @book.description %></p>
         </div>
       </div>
     </div>
