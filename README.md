@@ -4,6 +4,7 @@ Building association with:
 - has_one
 - belongs_to
 - has_many
+- has_one_attached
 
 <table>
   <tr>
@@ -56,6 +57,9 @@ rails db:create
 rails db:migrate
 
 rails db:seed
+
+# tests validation
+rspec
 
 # run the project
 rails bin/dev
