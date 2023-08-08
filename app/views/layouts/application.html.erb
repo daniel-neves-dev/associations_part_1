@@ -26,6 +26,7 @@
 
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
     <%= javascript_importmap_tags %>
+    <%= javascript_include_tag '/app/javascrip/controllers/delete_confirmation' %>
   </head>
 
   <body>
@@ -34,6 +35,8 @@
   <%= render 'layouts/sidebar' %>
     <%= yield %>
   </body>
+
+
   <!-- plugin for charts  -->
   <script src="./assets/js/plugins/chartjs.min.js" async></script>
   <!-- plugin for scrollbar  -->

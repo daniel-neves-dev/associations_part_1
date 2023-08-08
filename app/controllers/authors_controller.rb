@@ -3,7 +3,7 @@ class AuthorsController < ApplicationController
   before_action :author_user, only: %i[ edit update destroy]
   # GET /authors or /authors.json
   def index
-    @authors = Author.all
+    @authors = Author.order(:name)
   end
 
   # GET /authors/1 or /authors/1.json
