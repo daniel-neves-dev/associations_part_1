@@ -28,9 +28,7 @@
 
   <div class="mb-4">
     <%= form.label :author_id, class: 'block font-semibold text-blue-600' %>
-
     <% authors_collection = @current_account_authors || [] %>
-
     <%= form.collection_select :author_id, authors_collection, :id, :name, { prompt: true }, class: 'w-full border rounded-lg py-2 px-3 focus:outline-none focus:border-blue-400' %>
   </div>
 
