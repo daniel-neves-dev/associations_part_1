@@ -5,3 +5,4 @@ import "trix"
 import "@rails/actiontext"
 import 'flowbite'
 import 'js'
+import 'webpack'
