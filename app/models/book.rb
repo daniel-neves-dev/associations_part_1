@@ -1,7 +1,7 @@
 class Book < ApplicationRecord
   belongs_to :author
 
-  validates :title, :publish_at, presence: true
+  validates :title, :publish_at,:image, presence: true
 
   has_one_attached :image
 
