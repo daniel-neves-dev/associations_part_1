@@ -14,6 +14,7 @@ class BooksController < ApplicationController
   # GET /books/new
   def new
     @book = Book.new
+    @current_account_authors = current_account&.authors
   end
 
   # GET /books/1/edit
