@@ -1,29 +1,108 @@
-<h2>Sign up</h2>
 
-<%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-  <%= render "devise/shared/error_messages", resource: resource %>
+<div class="m-0 font-sans antialiased font-normal bg-gray-50 flex justify-center">
+  <main class="mt-0 transition-all duration-200 ease-soft-in-out w-3/4">
+    <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+      <%= render "devise/shared/error_messages", resource: resource %>
 
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
-  </div>
+      <section class="min-h-screen mb-32">
+        <div class="relative flex items-start pt-12 pb-56 m-4 overflow-hidden bg-center bg-cover min-h-50-screen rounded-xl bg-books">
+          <span class="absolute top-0 left-0 w-full h-full bg-center bg-cover bg-gradient-to-tl from-gray-900 to-slate-800 opacity-40">
+            <%= image_tag 'books.jpg' %>
+          </span>
+          <div class="container z-10">
+            <div class="flex flex-wrap mx-3">
+              <div class="w-full max-w-full px-3 mx-auto mt-0 text-center lg:flex-0 shrink-0 lg:w-5/12">
+                <h1 class="mt-12 mb-2 text-white">Welcome!</h1>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="container">
+          <div class="flex flex-wrap -mx-3 -mt-48 md:-mt-56 lg:-mt-48">
+            <div class="w-full max-w-full px-3 mx-auto mt-0 md:flex-0 shrink-0 md:w-7/12 lg:w-5/12 xl:w-4/12">
+              <div class="relative z-0 flex flex-col min-w-0 break-words bg-white border-0 shadow-soft-xl rounded-2xl bg-clip-border">
+                <div class="flex-auto p-6">
 
-  <div class="field">
-    <%= f.label :password %>
-    <% if @minimum_password_length %>
-    <em>(<%= @minimum_password_length %> characters minimum)</em>
-    <% end %><br />
-    <%= f.password_field :password, autocomplete: "new-password" %>
-  </div>
+                  <div class="mb-4">
+                    <%= f.email_field :email, autofocus: true, autocomplete: "email", class:"text-sm focus:shadow-soft-primary-outline leading-5.6 ease-soft block w-full appearance-none rounded-lg border border-solid border-gray-300 bg-white bg-clip-padding py-2 px-3 font-normal text-gray-700 transition-all focus:border-fuchsia-300 focus:bg-white focus:text-gray-700 focus:outline-none focus:transition-shadow", placeholder:"Email" %>
+                  </div>
 
-  <div class="field">
-    <%= f.label :password_confirmation %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
-  </div>
+                  <div class="mb-4">
+                    <% if @minimum_password_length %>
+                      <%= f.password_field :password, autocomplete: "new-password", class:"text-sm focus:shadow-soft-primary-outline leading-5.6 ease-soft block w-full appearance-none rounded-lg border border-solid border-gray-300 bg-white bg-clip-padding py-2 px-3 font-normal text-gray-700 transition-all focus:border-fuchsia-300 focus:bg-white focus:text-gray-700 focus:outline-none focus:transition-shadow",
+                                           placeholder:"Password 6 characters minimum"%>
+                    <% end %>
+                  </div>
+                  <div class="mb-4">
+                    <%= f.password_field :password_confirmation, autocomplete: "new-password", class:"text-sm focus:shadow-soft-primary-outline leading-5.6 ease-soft block w-full appearance-none rounded-lg border border-solid border-gray-300 bg-white bg-clip-padding py-2 px-3 font-normal text-gray-700 transition-all focus:border-fuchsia-300 focus:bg-white focus:text-gray-700 focus:outline-none focus:transition-shadow",
+                                         placeholder:"Password confirmation" %>
+                  </div>
+                  <div class="min-h-6 pl-6.92 mb-0.5 block">
+                    <input id="terms" class="w-4.92 h-4.92 ease-soft -ml-6.92 rounded-1.4 checked:bg-gradient-to-tl checked:from-gray-900 checked:to-slate-800 after:text-xxs after:font-awesome after:duration-250 after:ease-soft-in-out duration-250 relative float-left mt-1 cursor-pointer appearance-none border border-solid border-slate-200 bg-white bg-contain bg-center bg-no-repeat align-top transition-all after:absolute after:flex after:h-full after:w-full after:items-center after:justify-center after:text-white after:opacity-0 after:transition-all after:content-['\f00c'] checked:border-0 checked:border-transparent checked:bg-transparent checked:after:opacity-100" type="checkbox" value="" checked />
+                    <label class="mb-2 ml-1 font-normal cursor-pointer select-none text-sm text-slate-700" for="terms"> I agree the <a href="javascript:;" class="font-bold text-slate-700">Terms and Conditions</a> </label>
+                  </div>
+                  <div class="text-center">
+                    <button >
+                      <%= f.submit "Sign up", class:"inline-block w-full px-6 py-3 mt-6 mb-2 font-bold text-center text-white uppercase align-middle transition-all bg-transparent border-0 rounded-lg cursor-pointer active:opacity-85 hover:scale-102 hover:shadow-soft-xs leading-pro text-xs ease-soft-in tracking-tight-soft shadow-soft-md bg-150 bg-x-25 bg-gradient-to-tl from-gray-900 to-slate-800 hover:border-slate-700 hover:bg-slate-700 hover:text-white" %>
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+    <% end %>
 
-  <div class="actions">
-    <%= f.submit "Sign up" %>
-  </div>
+      <footer class="mt-12">
+        <div class="container">
+          <div class="flex flex-wrap -mx-3">
+            <div class="flex-shrink-0 w-full max-w-full mx-auto mb-6 text-center lg:flex-0 lg:w-8/12">
+              <a href="javascript:;" target="_blank" class="mb-2 mr-4 text-slate-400 sm:mb-0 xl:mr-12"> Company </a>
+              <a href="javascript:;" target="_blank" class="mb-2 mr-4 text-slate-400 sm:mb-0 xl:mr-12"> About Us </a>
+              <a href="javascript:;" target="_blank" class="mb-2 mr-4 text-slate-400 sm:mb-0 xl:mr-12"> Team </a>
+              <a href="javascript:;" target="_blank" class="mb-2 mr-4 text-slate-400 sm:mb-0 xl:mr-12"> Products </a>
+              <a href="javascript:;" target="_blank" class="mb-2 mr-4 text-slate-400 sm:mb-0 xl:mr-12"> Blog </a>
+              <a href="javascript:;" target="_blank" class="mb-2 mr-4 text-slate-400 sm:mb-0 xl:mr-12"> Pricing </a>
+            </div>
+            <div class="flex-shrink-0 w-full max-w-full mx-auto mt-2 mb-6 text-center lg:flex-0 lg:w-8/12">
+              <a href="javascript:;" target="_blank" class="mr-6 text-slate-400">
+                <span class="text-lg fab fa-dribbble"></span>
+              </a>
+              <a href="javascript:;" target="_blank" class="mr-6 text-slate-400">
+                <span class="text-lg fab fa-twitter"></span>
+              </a>
+              <a href="javascript:;" target="_blank" class="mr-6 text-slate-400">
+                <span class="text-lg fab fa-instagram"></span>
+              </a>
+              <a href="javascript:;" target="_blank" class="mr-6 text-slate-400">
+                <span class="text-lg fab fa-pinterest"></span>
+              </a>
+              <a href="javascript:;" target="_blank" class="mr-6 text-slate-400">
+                <span class="text-lg fab fa-github"></span>
+              </a>
+            </div>
+          </div>
+          <div class="flex flex-wrap -mx-3">
+            <div class="w-8/12 max-w-full px-3 mx-auto mt-1 text-center flex-0">
+              <p class="mb-0 text-slate-400">
+                Copyright ©
+                <script>
+                    document.write(new Date().getFullYear());
+                </script>
+                Soft by Creative Tim.
+              </p>
+            </div>
+          </div>
+        </div>
+      </footer>
+    </section>
+  </main>
+</div>
+
+<% unless account_signed_in? %>
+  <script>
+      document.addEventListener('DOMContentLoaded', function() {
+          document.querySelector('body').classList.add('no-scroll');
+      });
+  </script>
 <% end %>
-
-<%= render "devise/shared/links" %>
