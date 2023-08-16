@@ -52,9 +52,7 @@ npm install
 # create and built the database
 rails db:drop
 
-rails db:create
-
-rails db:migrate
+rails db:create db:migrate
 
 rails db:seed
 
@@ -72,7 +70,7 @@ Open the browser at the address `http://localhost:3000`
 
 ```bash
 main
-# has only the basic build
+# final version
 
 release/0.1_crud (https://github.com/daniel-neves-dev/associations_part_1/compare/main...release/0.1_crud)
 # build the CRUD files for books and authors
@@ -87,6 +85,9 @@ release/0.4_devise_test (https://github.com/daniel-neves-dev/associations_part_1
 # updated spec tests dor devise
 
 release/0.5_update (https://github.com/daniel-neves-dev/associations_part_1/compare/main...release/0.5_update)
-# add image and description for books
-# add avatar for authors
+# added image and description for books
+# added avatar for authors
+
+release/0.6_tailwind (https://github.com/daniel-neves-dev/associations_part_1/compare/main...release/0.6_tailwind)
+#added basic front-end template 
 ```
