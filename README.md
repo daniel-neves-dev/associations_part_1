@@ -60,7 +60,7 @@ rails db:seed
 rspec
 
 # run the project
-rails bin/dev
+bin/dev
 ```
 
 Open the browser at the address `http://localhost:3000`
