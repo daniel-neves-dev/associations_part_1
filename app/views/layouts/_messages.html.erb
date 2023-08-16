@@ -1,0 +1,15 @@
+<section class="m-0 font-sans text-base antialiased font-normal leading-default bg-gray-50 text-slate-500">
+  <div class="container xl:max-w-screen-lg h-auto mx-auto px-4">
+    <% if notice %>
+      <div class="p-4 mb-4 text-sm text-green-800 rounded-lg bg-green-50 dark:bg-gray-800 dark:text-green-400" role="alert">
+        <span class="font-medium"><%= notice %></span>
+      </div>
+    <% elsif alert %>
+      <div class="p-4 mb-4 text-sm text-red-800 rounded-lg bg-red-50 dark:bg-gray-800 dark:text-red-400" role="alert">
+        <span class="font-medium"><%= alert %></span>
+      </div>
+    <% end %>
+  </div>
+</section>
+
+

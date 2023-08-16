@@ -1,0 +1,17 @@
+<div id="<%= dom_id author %>">
+  <% if author.avatar.content_type.in?(%w[image/jpeg image/png]) %>
+    <p>
+      <%= link_to image_tag(author.avatar_resize), author.avatar if author.avatar.attached? %>
+    </p>
+  <% end %>
+  <p>
+    <strong>Name:</strong>
+    <%= author.name %>
+  </p>
+
+  <p>
+    <strong>Phone Number:</strong>
+    <%= author.phone %>
+  </p>
+
+</div>

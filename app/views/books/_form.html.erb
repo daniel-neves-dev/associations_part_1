@@ -1,0 +1,45 @@
+<%= form_with(model: book, class: 'bg-white rounded-lg shadow-md p-4 mb-4') do |form| %>
+  <% if book.errors.any? %>
+    <div class="text-red-600">
+      <h2><%= pluralize(book.errors.count, "error") %> prohibited this book from being saved:</h2>
+
+      <ul>
+        <% book.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="mb-4">
+    <%= form.label :title, class: 'block font-semibold text-blue-600' %>
+    <%= form.text_field :title, class: 'w-full border rounded-lg py-2 px-3 focus:outline-none focus:border-blue-400' %>
+  </div>
+
+  <div class="mb-4">
+    <%= form.label :publish_at, class: 'block font-semibold text-blue-600' %>
+    <%= form.date_field :publish_at, class: 'w-full border rounded-lg py-2 px-3 focus:outline-none focus:border-blue-400' %>
+  </div>
+
+  <div class="mb-4">
+    <%= form.label :description, class: 'block font-semibold text-blue-600' %>
+    <%= form.text_area :description, class: 'w-full border rounded-lg py-2 px-3 focus:outline-none focus:border-blue-400' %>
+  </div>
+
+  <div class="mb-4">
+    <%= form.label :author_id, class: 'block font-semibold text-blue-600' %>
+    <% authors_collection = @current_account_authors || [] %>
+    <%= form.collection_select :author_id, authors_collection, :id, :name, { prompt: true }, class: 'w-full border rounded-lg py-2 px-3 focus:outline-none focus:border-blue-400' %>
+  </div>
+
+
+
+  <div class="mb-4">
+    <%= form.label :image, class: 'block font-semibold text-blue-600' %>
+    <%= form.file_field :image, class: 'w-full border rounded-lg py-2 px-3 focus:outline-none focus:border-blue-400' %>
+  </div>
+
+  <div>
+    <%= form.submit class: 'bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400' %>
+  </div>
+<% end %>

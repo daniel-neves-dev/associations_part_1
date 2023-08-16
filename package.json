@@ -1,0 +1,27 @@
+{
+  "name": "associations_part_1",
+  "version": "1.0.0",
+  "dependencies": {
+    "@rails/webpacker": "5.4.4",
+    "@tailwindcss/aspect-ratio": "^0.4.2",
+    "@tailwindcss/container-queries": "^0.1.1",
+    "@tailwindcss/forms": "^0.5.4",
+    "@tailwindcss/typography": "^0.5.9",
+    "autoprefixer": "^10.4.2",
+    "cli": "^1.0.1",
+    "flowbite": "^1.8.1",
+    "highlight.js": "^11.4.0",
+    "postcss": "^8.4.6",
+    "postcss-cli": "^9.1.0",
+    "tailwindcss": "^3.3.3",
+    "tailwindcss-transforms": "^2.2.0",
+    "webpack": "^4.46.0",
+    "webpack-cli": "^3.3.12"
+  },
+  "scripts": {
+    "build": "tailwindcss build -i src/styles.css -o build/assets/css/soft-ui-dashboard-tailwind.css"
+  },
+  "devDependencies": {
+    "webpack-dev-server": "^3"
+  }
+}
